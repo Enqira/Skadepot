@@ -32,6 +32,7 @@ function onDeviceReady() {
 
 }
 // 05-11 Starts here
+
 let app = {
     // in case I dont want to auto lunch camera
     // init: function() {
@@ -53,8 +54,14 @@ let app = {
         
     },
     ftw: function(imgURI) {
-        document.getElementById('msg').textContent = imgURI;
-        document.getElementById('photo').src = imgURI;
+            var img = document.createElement('img');
+            img.src = imgURI;
+
+            
+
+
+            document.getElementById('msg').textContent = imgURI;
+            document.getElementById('imgHere').appendChild(img)
 
     },
     wtf: function(msg) {
@@ -63,3 +70,5 @@ let app = {
 };
 
 document.addEventListener('deviceready', app.takephoto);
+
+

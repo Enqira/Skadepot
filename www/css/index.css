@@ -137,3 +137,10 @@ div.main-btns{
     padding: 1rem;
     margin: 1rem;
 }
+#photo {
+    width: 100px;
+    height: 100px;
+}
+img {
+    width: 100px;
+}

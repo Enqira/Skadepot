@@ -1,45 +1,21 @@
-/*
- * Licensed to the Apache Software Foundation (ASF) under one
- * or more contributor license agreements.  See the NOTICE file
- * distributed with this work for additional information
- * regarding copyright ownership.  The ASF licenses this file
- * to you under the Apache License, Version 2.0 (the
- * "License"); you may not use this file except in compliance
- * with the License.  You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
- */
+var app = {
+    initialize: function() {
+        document.addEventListener('deviceready', this.onDeviceReady.bind(this), false);
+    },
+    onDeviceReady: function() {
+        var that = this;
+        document.getElementById("start-scan").onclick = function() {
+            window.plugins.GMVBarcodeScanner.scan({}, function(err, result) {
+                //Handle Errors
+                if(err) return that.updateResults(err, true);
 
-// Wait for the deviceready event before using any of Cordova's device APIs.
-// See https://cordova.apache.org/docs/en/latest/cordova/events/events.html#deviceready
-document.addEventListener('deviceready', onDeviceReady, false);
-
-function onDeviceReady() {
-    // Cordova is now initialized. Have fun!
-
-    console.log('Running cordova-' + cordova.platformId + '@' + cordova.version);
-    document.getElementById('deviceready').classList.add('ready');
-
-
-
-
-}
-// 05-11 Starts here
-
-let app = {
-    // in case I dont want to auto lunch camera
-    // init: function() {
-    //     document.getElementById('btn').addEventListener('click', app.takephoto);
-    // },
-    takephoto: function() {
-        let opts = {
+                //Do something with the data.
+                that.updateResults(result);
+            });
+        };
+        // on take picture click
+        document.getElementById("Take Pics").onclick = function() {
+            let opts = {
             quality: 20,
             destinationType: Camera.DestinationType.FILE_URI,
             sourceType: Camera.PictureSourceType.CAMERA,
@@ -51,24 +27,74 @@ let app = {
         };
 
         navigator.camera.getPicture(app.ftw, app.wtf, opts);
-        
+        }; // Take Pictures finishes here
+
+        document.getElementById("start-vin-scan").onclick = function() {
+            window.plugins.GMVBarcodeScanner.scanVIN(function(err, result) {
+                if(err) return that.updateResults(err, true);
+                that.updateResults(result);
+            });
+        };
+
     },
+    // Handle Results From Take Pics
+    // on success
     ftw: function(imgURI) {
+            var divParrent = document.getElementById("pics-result");
+            var listItem = document.createElement("li")
             var img = document.createElement('img');
             img.src = imgURI;
+            img.id = imgURI;
+            var deleteBtn = document.createElement("button")
+            deleteBtn.innerHTML = "Delete";
+            deleteBtn.className = "delete";
 
-            
-
-
-            document.getElementById('msg').textContent = imgURI;
-            document.getElementById('imgHere').appendChild(img)
-
+            divParrent.appendChild(listItem);
+            listItem.appendChild(img);
+            listItem.appendChild(deleteBtn);
+            deleteBtn.onclick = deleteTask;
+                
     },
-    wtf: function(msg) {
-        document.getElementById('msg').textContent = msg;
+
+
+
+    // Handle Results from bar-code Scan
+    updateResults: function(result, err) {
+        var ele = document.getElementById("last-result");
+        if(err) {
+            addClass(ele, "error");
+        } else {
+            removeClass(ele, "error");
+        }
+        if(typeof result == "object") {
+            result = JSON.stringify(result, null, 2);
+        }
+        if(err) {
+            result = "ERROR\n"+result;
+        }
+        if (ele.value === ""){
+            ele.value = result
+        }
+        else{
+            ele.value = ele.value + ", " + result
+        }
+        // document.getElementById("last-result").value = result
     }
 };
 
-document.addEventListener('deviceready', app.takephoto);
+function hasClass(ele,cls) {
+    return !!ele.className.match(new RegExp('(\\s|^)'+cls+'(\\s|$)'));
+}
 
+function addClass(ele,cls) {
+    if (!hasClass(ele,cls)) ele.className += " "+cls;
+}
 
+function removeClass(ele,cls) {
+    if (hasClass(ele,cls)) {
+        var reg = new RegExp('(\\s|^)'+cls+'(\\s|$)');
+        ele.className=ele.className.replace(reg,' ');
+    }
+}
+
+app.initialize();

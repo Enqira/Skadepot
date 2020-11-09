@@ -7,7 +7,7 @@ var app = {
         document.getElementById("start-scan").onclick = function() {
             window.plugins.GMVBarcodeScanner.scan({}, function(err, result) {
                 //Handle Errors
-                if(err) return that.updateResults(err, true);
+                // if(err) return that.updateResults(err, true);
 
                 //Do something with the data.
                 that.updateResults(result);
@@ -55,32 +55,30 @@ var app = {
             deleteBtn.onclick = deleteTask;
                 
     },
+   
 
 
 
     // Handle Results from bar-code Scan
     updateResults: function(result, err) {
         var ele = document.getElementById("last-result");
-        if(err) {
-            addClass(ele, "error");
-        } else {
-            removeClass(ele, "error");
-        }
-        if(typeof result == "object") {
-            result = JSON.stringify(result, null, 2);
-        }
-        if(err) {
-            result = "ERROR\n"+result;
-        }
-        if (ele.value === ""){
+       
+        if (ele.value === "" || ele.value === "undefined"){
             ele.value = result
         }
         else{
             ele.value = ele.value + ", " + result
         }
-        // document.getElementById("last-result").value = result
+        
     }
 };
+ // function to remove images on click on Delete botton
+    var deleteTask = function(){
+        var listItem = this.parentNode;
+        var ul = listItem.parentNode;
+        ul.removeChild(listItem);
+    }
+    // function finishes here
 
 function hasClass(ele,cls) {
     return !!ele.className.match(new RegExp('(\\s|^)'+cls+'(\\s|$)'));

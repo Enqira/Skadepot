@@ -42,6 +42,11 @@ var app = {
         // test send reques json
         document.getElementById("send").onclick = function() {
             console.log("clicked send btn")
+        
+           
+           
+           
+           
             var formdata = new FormData();
             formdata.append("title", scanResults);
             formdata.append('image', imgBlob);
@@ -83,15 +88,27 @@ var app = {
             listItem.appendChild(deleteBtn);
             deleteBtn.onclick = deleteTask;
 
+            // new blob
+
+
+
+
 
             // use fileEntry and fileReader
             
             window.resolveLocalFileSystemURL(imgURI, function(fileEntry) {
                 fileEntry.file(function(file) {
+                    console.log("file is " + file.type)
                     var reader = new FileReader();
                     reader.onloadend = function(e) {
                         imgBlob = new Blob([this.result], {type:"image/jpeg"});
-                        
+                        console.log("converted image to blob")  
+                        console.log(imgBlob.type) 
+                         
+
+                        // console.log(imgBlob.) 
+
+
                         //post formData here
                     };
                     reader.readAsArrayBuffer(file);
@@ -100,6 +117,7 @@ var app = {
 
                 
          },
+    // test make new blob
     
 
 
@@ -132,7 +150,7 @@ var scanResults
 var imageToBeSend
 var imgBlob
 
-
+  
 
 
    

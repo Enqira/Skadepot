@@ -21,14 +21,14 @@ var app = {
         // on take picture click
         document.getElementById("takePics").onclick = function() {
             let opts = {
-            quality: 20,
+            quality: 80,
             destinationType: Camera.DestinationType.FILE_URI,
             sourceType: Camera.PictureSourceType.CAMERA,
             mediaType: Camera.MediaType.PICTURE,
             encodingType: Camera.EncodingType.JPEG,
             cameraDirection: Camera.Direction.BACK,
-            targetWidth: 300,
-            targetHeight: 400
+            targetWidth: 1024,
+            targetHeight: 1600
         };
 
         navigator.camera.getPicture(app.ftw, app.wtf, opts);
@@ -42,26 +42,35 @@ var app = {
         // test send reques json
         document.getElementById("send").onclick = function() {
             console.log("clicked send btn")
-        
-           
-           
-           
-           
+
             var formdata = new FormData();
             formdata.append("title", scanResults);
-            formdata.append('image', imgBlob);
+            // formdata.append('image', imgBlob);
+            for (let i=0; i<blobArr.length; i++){
+                formdata.append('image', blobArr[i]);
+            }
 
             const requestOptions = {
             method: 'POST',
             body: formdata,
             redirect: 'follow'
             };
+            
+            fetch("http://192.168.0.195:3001/upload", requestOptions)
 
-            fetch("http://192.168.0.195:3000/upload", requestOptions)
-            .then(response => response.text())
-            .then(result => console.log(result))
-            .catch(error => console.log('error', error));
-
+            .then(response => {
+                if (response.ok) {
+                   dataSent()
+                }
+                else{
+                    console.log("something wrong")
+                }
+            })
+            .catch(error => {
+                console.log('error', error)
+                navigator.notification.beep(1)
+                navigator.notification.alert("There was a problem, check internet connection or contact system admin")
+            })
         };
 
     },
@@ -76,6 +85,7 @@ var app = {
             
             var divParrent = document.getElementById("pics-result");
             var listItem = document.createElement("li")
+            listItem.className = "listItem"
             var img = document.createElement('img');
             img.src = imgURI;
             img.id = imgURI;
@@ -104,12 +114,7 @@ var app = {
                         imgBlob = new Blob([this.result], {type:"image/jpeg"});
                         console.log("converted image to blob")  
                         console.log(imgBlob.type) 
-                         
-
-                        // console.log(imgBlob.) 
-
-
-                        //post formData here
+                        blobArr.push(imgBlob)
                     };
                     reader.readAsArrayBuffer(file);
                 });
@@ -149,9 +154,24 @@ var app = {
 var scanResults 
 var imageToBeSend
 var imgBlob
+var blobArr = []
 
-  
+// function that runs when data is sent to delete results and images
+function dataSent(){
+        console.log("Data was sent")
+        blobArr = []
+        // remove Scan results
+        const resultsTag = document.getElementById("last-result")
+        resultsTag.value = ''
 
+        // remove all images
+        const item = document.querySelector('#pics-result')
+        while (item.firstChild) {
+        item.removeChild(item.firstChild)
+        }
+        
+
+}
 
    
 

@@ -27,7 +27,8 @@
       "cordova-plugin-camera": {
         "ANDROID_SUPPORT_V4_VERSION": "27.+"
       },
-      "cordova-plugin-file": {}
+      "cordova-plugin-file": {},
+      "cordova-plugin-dialogs": {}
     },
     "platforms": [
       "ios",
@@ -36,6 +37,7 @@
   },
   "devDependencies": {
     "cordova-plugin-camera": "^4.1.0",
+    "cordova-plugin-dialogs": "^2.0.2",
     "cordova-plugin-file": "^6.0.2"
   }
 }

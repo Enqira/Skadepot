@@ -1,32 +1,30 @@
 * {
-    -webkit-tap-highlight-color: rgba(0,0,0,0);
-    box-sizing: border-box;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  box-sizing: border-box;
 }
 
 body {
-    -webkit-touch-callout: none;
-    -webkit-text-size-adjust: none;
-    -webkit-user-select: none;
-    background: rgb(33,82,100);
-    background-attachment:fixed;
-    font-family:'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
-    font-size:12px;
-    height:100%;
-    margin:0px;
-    padding:0px;
-    width:100vw;
-    box-sizing: border-box;
-    
+  -webkit-touch-callout: none;
+  -webkit-text-size-adjust: none;
+  -webkit-user-select: none;
+  background: #309975;
+  background-attachment: fixed;
+  font-family: "HelveticaNeue-Light", "HelveticaNeue", Helvetica, Arial,
+    sans-serif;
+  font-size: 12px;
+  height: 100%;
+  margin: 0px;
+  padding: 0px;
+  width: 100vw;
+  box-sizing: border-box;
 }
 
 .outer {
-    
-    
-    width: 100%;
-    height: 100%;
-    text-align: center;
-    display: flex;
-    flex-direction: column-reverse;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  display: flex;
+  flex-direction: column-reverse;
 }
 
 /* .inner {
@@ -34,100 +32,184 @@ body {
     vertical-align: middle;
 } */
 .app {
-    widows: 100%;
-    height: 100%;
-    padding:0;
-    margin-left: auto;
-    margin-right: auto;
-}
- 
-.blink {
-    animation:fade 3000ms infinite;
-    -webkit-animation:fade 3000ms infinite;
-}
- /* buttons */
- .buttons{
-    position: relative;
-    bottom: 0;
- }
-.button {
-    background-color: #00B6CD; /* Green */
-    border: none;
-    color: #C7E8F0;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    border-radius: 30px;
-    font-weight: bold;
-    text-transform: uppercase;
-    -webkit-box-shadow: 0px 5px 24px -8px rgba(0,0,0,0.75);
-    -moz-box-shadow: 0px 5px 24px -8px rgba(0,0,0,0.75);
-    box-shadow: 0px 5px 24px -8px rgba(0,0,0,0.75);
-    width: 150px;
-    height: 45px;
-    line-height: 16px;
-    margin-top: 12px;
-    margin-left: 8px;
-    margin-right: 8px;
-   
-    
+  widows: 100%;
+  height: 100%;
+  padding: 0;
+  margin-left: auto;
+  margin-right: auto;
 }
 
+.blink {
+  animation: fade 3000ms infinite;
+  -webkit-animation: fade 3000ms infinite;
+}
+/* buttons */
+.buttons {
+  position: relative;
+  bottom: 0;
+}
+.button {
+  background-color: #58b368;
+  border: none;
+  color: #c7e8f0;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 30px;
+  font-weight: bold;
+  text-transform: uppercase;
+  -webkit-box-shadow: 0px 5px 24px -8px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0px 5px 24px -8px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 5px 24px -8px rgba(0, 0, 0, 0.75);
+  width: 150px;
+  height: 45px;
+  line-height: 16px;
+  margin-top: 12px;
+  margin-left: 8px;
+  margin-right: 8px;
+}
 
 #last-result {
-    margin-top: 35px;
-    border-radius: 3px;
-    background-color: white;
-    padding: 10px 20px;
-    -webkit-box-shadow: 0px 5px 24px -8px rgba(0,0,0,0.75);
-    -moz-box-shadow: 0px 5px 24px -8px rgba(0,0,0,0.75);
-    box-shadow: 0px 5px 24px -8px rgba(0,0,0,0.75);
-    overflow-y: scroll;
-    overflow-x: hidden;
-    word-wrap: break-word;
-    height: 75px;
-    text-align:left;
-    width: 100%;
-    
+  margin-top: 35px;
+  border-radius: 3px;
+  background-color: white;
+  padding: 10px 20px;
+  -webkit-box-shadow: 0px 5px 24px -8px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0px 5px 24px -8px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 5px 24px -8px rgba(0, 0, 0, 0.75);
+  overflow-y: scroll;
+  overflow-x: hidden;
+  word-wrap: break-word;
+  height: 75px;
+  text-align: left;
+  width: 100%;
 }
 #pics-result {
-    margin-top: 35px;
-    border-radius: 3px;
-    background-color: white;
-    padding: 10px 20px;
-    -webkit-box-shadow: 0px 5px 24px -8px rgba(0,0,0,0.75);
-    -moz-box-shadow: 0px 5px 24px -8px rgba(0,0,0,0.75);
-    box-shadow: 0px 5px 24px -8px rgba(0,0,0,0.75);
-    overflow-y: scroll;
-    overflow-x: hidden;
-    word-wrap: break-word;
-    height: 50vh;
-    text-align:left;
-    width: 100%;
-    list-style: none;
-    display: flex;
-    flex-flow: wrap;
-    
+  margin-top: 10px;
+  border-radius: 3px;
+  background-color: white;
+  padding: 10px 20px;
+  -webkit-box-shadow: 0px 5px 24px -8px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0px 5px 24px -8px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 5px 24px -8px rgba(0, 0, 0, 0.75);
+  overflow-y: scroll;
+  overflow-x: hidden;
+  word-wrap: break-word;
+  height: 50vh;
+  text-align: left;
+  width: 100%;
+  list-style: none;
+  display: flex;
+  flex-flow: wrap;
 }
 /* div images style */
 div.pics-result {
-    display: inline;
+  display: inline;
 }
 
-
-#last-result.error {
-    color: red;
-}
 /* images style */
 img {
-    width: 45vw;
-    border-radius: 4px;
-    border: 1px solid green;
+  width: 45vw;
+  border-radius: 4px;
+  border: 6px solid #309975;
+  -webkit-box-shadow: 0px 5px 24px -8px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0px 5px 24px -8px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 5px 24px -8px rgba(0, 0, 0, 0.75);
 }
 /* style list */
 li {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Button used to open the contact form - fixed at the bottom of the page */
+.open-button {
+  background-color: #58b368;
+  border: none;
+  color: #c7e8f0;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  padding: 16px 20px;
+  border: none;
+  border-radius: 30px;
+  bottom: 23px;
+  right: 28px;
+  width: 280px;
+  margin-top: 10px;
+  font-size: 16px;
+  text-transform: uppercase;
+  -webkit-box-shadow: 0px 5px 24px -8px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0px 5px 24px -8px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 5px 24px -8px rgba(0, 0, 0, 0.75);
+}
+
+/* The popup form - hidden by default */
+.form-popup {
+  display: none;
+  position: fixed;
+  z-index: 9;
+  background: #309975;
+  margin-top: 5px;
+}
+
+/* Add styles to the form container */
+.form-container {
+  padding: 10px;
+  background-color: #309975;
+  height: 100vh;
+  margin-top: 100px;
+}
+
+/* Full-width input fields */
+.form-container input[type="text"],
+.form-container input[type="password"] {
+  width: 95%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  border: none;
+  background: #f1f1f1;
+  border-radius: 30px;
+  -webkit-box-shadow: 0px 5px 24px -8px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0px 5px 24px -8px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 5px 24px -8px rgba(0, 0, 0, 0.75);
+}
+
+/* When the inputs get focus, do something */
+.form-container input[type="text"]:focus,
+.form-container input[type="password"]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+/* Set a style for the submit/login button */
+.form-container .btn {
+  width: 100%;
+  margin-bottom: 10px;
+  background-color: #58b368;
+  border: none;
+  color: #c7e8f0;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  padding: 16px 20px;
+  border: none;
+  border-radius: 30px;
+  bottom: 23px;
+  right: 28px;
+  width: 280px;
+  margin-top: 10px;
+  font-size: 16px;
+  text-transform: uppercase;
+  -webkit-box-shadow: 0px 5px 24px -8px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0px 5px 24px -8px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 5px 24px -8px rgba(0, 0, 0, 0.75);
+}
+
+/* Add a red background color to the cancel button */
+.form-container .cancel {
+  background-color: red;
+  opacity: 0.8;
 }

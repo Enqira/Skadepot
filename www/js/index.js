@@ -39,34 +39,60 @@ var app = {
     document.getElementById("send").onclick = function () {
       console.log("clicked send btn");
 
+      //   const formdata = new FormData();
+      //   formdata.append("auth-token", tokenKey);
+      //   formdata.append("title", scanResults);
+      //   // formdata.append('image', imgBlob);
+      //   for (let i = 0; i < blobArr.length; i++) {
+      //     formdata.append("image", blobArr[i]);
+      //   }
+
+      //   const requestOptions = {
+      //     method: "POST",
+      //     body: formdata,
+      //     redirect: "follow",
+      //   };
+      console.log(tokenKey);
+      var myHeaders = new Headers();
+      myHeaders.append("auth-token", tokenKey);
+
       var formdata = new FormData();
       formdata.append("title", scanResults);
-      // formdata.append('image', imgBlob);
+      formdata.append("image", imgBlob);
       for (let i = 0; i < blobArr.length; i++) {
         formdata.append("image", blobArr[i]);
       }
 
-      const requestOptions = {
+      var requestOptions = {
         method: "POST",
+        headers: myHeaders,
         body: formdata,
         redirect: "follow",
       };
 
-      fetch("http://192.168.0.195:3001/upload", requestOptions)
-        .then((response) => {
-          if (response.ok) {
-            dataSent();
-          } else {
-            console.log("something wrong");
-          }
-        })
-        .catch((error) => {
-          console.log("error", error);
-          navigator.notification.beep(1);
-          navigator.notification.alert(
-            "There was a problem, check internet connection or contact system admin"
-          );
-        });
+      if (tokenKey === undefined) {
+        navigator.notification.alert("Please Log-in");
+        return;
+      } else {
+        fetch("http://192.168.0.195:3001/upload", requestOptions)
+          .then((response) => {
+            if (response.ok) {
+              dataSent();
+            } else {
+              console.log(response);
+              if (response.statusText == "Unauthorized") {
+                navigator.notification.alert("Please Log in");
+              }
+            }
+          })
+          .catch((error) => {
+            console.log("error", error);
+            navigator.notification.beep(1);
+            navigator.notification.alert(
+              "There was a problem, check internet connection or contact system admin"
+            );
+          });
+      }
     };
   },
   // Handle Results From Take Pics
@@ -78,13 +104,13 @@ var app = {
     console.log("ftw function executed");
     console.log(imgURI);
 
-    var divParrent = document.getElementById("pics-result");
-    var listItem = document.createElement("li");
+    const divParrent = document.getElementById("pics-result");
+    const listItem = document.createElement("li");
     listItem.className = "listItem";
-    var img = document.createElement("img");
+    const img = document.createElement("img");
     img.src = imgURI;
     img.id = imgURI;
-    var deleteBtn = document.createElement("button");
+    const deleteBtn = document.createElement("button");
     deleteBtn.innerHTML = "Delete";
     deleteBtn.className = "delete";
 
@@ -100,11 +126,10 @@ var app = {
     window.resolveLocalFileSystemURL(imgURI, function (fileEntry) {
       fileEntry.file(function (file) {
         console.log("file is " + file.type);
-        var reader = new FileReader();
+        const reader = new FileReader();
         reader.onloadend = function (e) {
           imgBlob = new Blob([this.result], { type: "image/jpeg" });
           console.log("converted image to blob");
-          console.log(imgBlob.type);
           blobArr.push(imgBlob);
         };
         reader.readAsArrayBuffer(file);
@@ -115,7 +140,7 @@ var app = {
 
   // Handle Results from bar-code Scan
   updateResults: function (result, err) {
-    var ele = document.getElementById("last-result");
+    const ele = document.getElementById("last-result");
 
     if (ele.value === "" || ele.value === "undefined") {
       ele.value = result;
@@ -138,21 +163,24 @@ function closeForm() {
 }
 
 // function after clicking sublit login button
+var userName;
+var password;
+var tokenKey;
 function loginFunc() {
   console.log("clicked submit");
-  const userName = document.getElementById("user-field").value;
-  const passField = document.getElementById("pass-field").value;
-  if ((userName.length < 5) | (passField.length < 5)) {
+  userName = document.getElementById("user-field").value;
+  password = document.getElementById("pass-field").value;
+  if ((userName.length < 5) | (password.length < 5)) {
     navigator.notification.alert(
       "user name of password must be at least 5 characters"
     );
   } else {
-    var myHeaders = new Headers();
+    const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
 
-    var raw = JSON.stringify({ name: userName, password: passField });
+    const raw = JSON.stringify({ name: userName, password: password });
 
-    var requestOptions = {
+    const requestOptions = {
       method: "POST",
       headers: myHeaders,
       body: raw,
@@ -161,7 +189,15 @@ function loginFunc() {
 
     fetch("http://192.168.0.195:3001/login", requestOptions)
       .then((response) => response.text())
-      .then((result) => console.log(result))
+      .then((result) => {
+        if (result.length <= 30) {
+          navigator.notification.alert(result);
+        } else {
+          tokenKey = result;
+          console.log(tokenKey);
+          closeForm();
+        }
+      })
       .catch((error) => console.log("error", error));
   }
 }
@@ -188,10 +224,10 @@ function dataSent() {
   }
 }
 
-// function to remove images on click on Delete botton
+// function to remove image on click on Delete botton
 var deleteTask = function () {
-  var listItem = this.parentNode;
-  var ul = listItem.parentNode;
+  const listItem = this.parentNode;
+  const ul = listItem.parentNode;
   ul.removeChild(listItem);
 };
 // function finishes here

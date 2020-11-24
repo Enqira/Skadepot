@@ -3,7 +3,7 @@
 
 <head>
     <meta http-equiv="Content-Security-Policy"
-        content="default-src 'self' data: gap: https://ssl.gstatic.com http://192.168.0.195:3001; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *; img-src *">
+        content="default-src 'self' data: gap: https://ssl.gstatic.com http://192.168.0.195:3001; script-src 'self' http://* 'unsafe-inline'; style-src 'self' http://* 'unsafe-inline'; media-src *; img-src *">
     <meta name="format-detection" content="telephone=no">
     <meta name="msapplication-tap-highlight" content="no">
     <link rel="stylesheet" type="text/css" href="css/index.css">
@@ -18,17 +18,17 @@
             <div class="app">
                 <button class="open-button" onclick="openForm()">login</button>
                 <div class="form-popup" id="myForm">
-                    <form action="/action_page.php" class="form-container">
-                        <h1>Login</h1>
+                    <form class="form-container">
+                        <h1>Log-in</h1>
 
-                        <label for="email"><b>Email</b></label>
-                        <input type="text" placeholder="Enter Email" name="email" required>
+                        <label><b>User Name</b></label>
+                        <input type="text" id="user-field" placeholder="Enter User Name" name="user-name" required>
 
-                        <label for="psw"><b>Password</b></label>
-                        <input type="password" placeholder="Enter Password" name="psw" required>
+                        <label><b>Password</b></label>
+                        <input type="text" id="pass-field" placeholder="Enter Password" name="password" required>
 
-                        <button type="submit" class="btn">Login</button>
-                        <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+                        <button type="button" onclick="loginFunc()" class="btn">Log-in</button>
+                        <button type="button" onclick="closeForm()" class="btn cancel">Close</button>
                     </form>
                 </div>
                 <div id="pics-result"></div>

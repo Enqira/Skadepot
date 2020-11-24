@@ -128,13 +128,42 @@ var app = {
   },
 };
 
-// login script
+// to toggle login popup
 function openForm() {
   document.getElementById("myForm").style.display = "block";
 }
 
 function closeForm() {
   document.getElementById("myForm").style.display = "none";
+}
+
+// function after clicking sublit login button
+function loginFunc() {
+  console.log("clicked submit");
+  const userName = document.getElementById("user-field").value;
+  const passField = document.getElementById("pass-field").value;
+  if ((userName.length < 5) | (passField.length < 5)) {
+    navigator.notification.alert(
+      "user name of password must be at least 5 characters"
+    );
+  } else {
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    var raw = JSON.stringify({ name: userName, password: passField });
+
+    var requestOptions = {
+      method: "POST",
+      headers: myHeaders,
+      body: raw,
+      redirect: "follow",
+    };
+
+    fetch("http://192.168.0.195:3001/login", requestOptions)
+      .then((response) => response.text())
+      .then((result) => console.log(result))
+      .catch((error) => console.log("error", error));
+  }
 }
 
 // finishes here

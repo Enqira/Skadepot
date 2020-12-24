@@ -16,7 +16,9 @@
     <div class="outer">
         <div class="inner">
             <div class="app">
+
                 <button class="open-button" onclick="openForm()">login</button>
+                <button class="log-out">log-out</button>
                 <div class="form-popup" id="myForm">
                     <form class="form-container">
                         <h1>Log-in</h1>
@@ -32,16 +34,16 @@
                     </form>
                 </div>
                 <div id="pics-result"></div>
-
-                <input id="last-result" placeholder="Please Scan or type order number...">
+                <input id="user-comment" class="user-input" placeholder="Add comment...">
+                <input id="last-result" class="user-input" placeholder="Please Scan or type order number...">
 
                 <div class="buttons">
 
                     <div class="button" id="startScan">
                         Scan
                     </div>
-                    <div class="button" id="history">
-                        History
+                    <div class="button" id="settings">
+                        Settings
                     </div><br>
                     <div class="button" id="takePics">
                         Pictures

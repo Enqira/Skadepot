@@ -28,7 +28,8 @@
         "ANDROID_SUPPORT_V4_VERSION": "27.+"
       },
       "cordova-plugin-file": {},
-      "cordova-plugin-dialogs": {}
+      "cordova-plugin-dialogs": {},
+      "cordova-plugin-secure-key-store": {}
     },
     "platforms": [
       "ios",
@@ -38,6 +39,7 @@
   "devDependencies": {
     "cordova-plugin-camera": "^4.1.0",
     "cordova-plugin-dialogs": "^2.0.2",
-    "cordova-plugin-file": "^6.0.2"
+    "cordova-plugin-file": "^6.0.2",
+    "cordova-plugin-secure-key-store": "^1.5.5"
   }
 }

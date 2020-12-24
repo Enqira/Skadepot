@@ -48,7 +48,8 @@ body {
   position: relative;
   bottom: 0;
 }
-.button {
+.button,
+.log-out {
   background-color: #58b368;
   border: none;
   color: #c7e8f0;
@@ -71,8 +72,9 @@ body {
   margin-right: 8px;
 }
 
-#last-result {
-  margin-top: 35px;
+#last-result,
+#user-comment {
+  margin-top: 15px;
   border-radius: 3px;
   background-color: white;
   padding: 10px 20px;
@@ -82,7 +84,7 @@ body {
   overflow-y: scroll;
   overflow-x: hidden;
   word-wrap: break-word;
-  height: 75px;
+  height: 50px;
   text-align: left;
   width: 100%;
 }
@@ -125,6 +127,7 @@ li {
 }
 
 /* Button used to open the contact form - fixed at the bottom of the page */
+
 .open-button {
   background-color: #58b368;
   border: none;
@@ -178,11 +181,11 @@ li {
 }
 
 /* When the inputs get focus, do something */
-.form-container input[type="text"]:focus,
+/* .form-container input[type="text"]:focus,
 .form-container input[type="password"]:focus {
   background-color: #ddd;
   outline: none;
-}
+} */
 
 /* Set a style for the submit/login button */
 .form-container .btn {

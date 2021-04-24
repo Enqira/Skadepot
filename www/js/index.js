@@ -9,12 +9,6 @@ var app = {
   onDeviceReady: function () {
     var that = this
 
-    // // retrieve stored token and username
-    // retrieveToken()
-    // retrieveUsername()
-    // // if (savedToken.length > 0) {
-    // //   logedIn()
-    // // }
     var token
     var getToken = () => {
       cordova.plugins.SecureKeyStore.get(
@@ -66,7 +60,6 @@ var app = {
         encodingType: Camera.EncodingType.JPEG,
         cameraDirection: Camera.Direction.BACK,
         targetWidth: 2048
-        // targetHeight: 1600
       }
 
       navigator.camera.getPicture(app.ftw, app.wtf, opts)
@@ -74,7 +67,6 @@ var app = {
 
     // send data on click (send btn)
     document.getElementById("send").onclick = function () {
-      console.log("clicked send btn")
       token = undefined
       userName = undefined
 
@@ -96,7 +88,7 @@ var app = {
         if (ele.value.length > 0) {
           scanResults = ele.value
         } else {
-          navigator.notification.alert("Please scan or write barcode!")
+          navigator.notification.alert("Please scan or write reference!")
           return
         }
         //   check if blobArr is empty
@@ -106,11 +98,10 @@ var app = {
         }
         const commentInput = document.querySelector("#user-comment")
         // new formdata that will be send to server
-        var formdata = new FormData()
+        const formdata = new FormData()
 
         if (userName != undefined) {
           formdata.append("username", userName)
-          console.log("username added to formdata")
         } else {
           navigator.notification.alert("user name not available")
           return
@@ -133,7 +124,7 @@ var app = {
           redirect: "follow"
         }
 
-        fetch("/upload", requestOptions)
+        fetch("http://185.143.45.137:9001/upload", requestOptions)
           .then(response => {
             if (response.ok) {
               dataSent()
@@ -322,8 +313,18 @@ const removeUsername = () => {
 
 // Settings
 
-// document.querySelector("#settings").addEventListener("click", settings)
 // finishes here
+// Alert function
+const alertFunc = text => {
+  const app = document.querySelector(".app")
+  const element = document.createElement("div")
+  element.className = "alertDiv"
+  element.innerText = text
+  app.appendChild(element)
+  setTimeout(() => {
+    app.removeChild(element)
+  }, 3000)
+}
 
 var scanResults
 var imageToBeSend
@@ -332,7 +333,6 @@ var blobArr = []
 
 // function that runs when data is sent to delete results and images
 function dataSent() {
-  console.log("Data was sent")
   blobArr = []
   // remove Scan results
   const ele = document.getElementById("last-result")
@@ -340,16 +340,20 @@ function dataSent() {
 
   // remove all images
   const item = document.querySelector("#pics-result")
-
   while (item.firstChild) {
     item.removeChild(item.firstChild)
   }
+
+  // remove comment
   const commentInput = document.querySelector("#user-comment")
   commentInput.value = ""
+
+  //   let user know the data was sent
+  alertFunc("Data sent successfully!")
 }
 
 // function to remove image on click on Delete botton
-var deleteTask = function () {
+const deleteTask = function () {
   const listItem = this.parentNode
   const ul = listItem.parentNode
   ul.removeChild(listItem)

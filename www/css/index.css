@@ -148,6 +148,9 @@ li {
   -moz-box-shadow: 0px 5px 24px -8px rgba(0, 0, 0, 0.75);
   box-shadow: 0px 5px 24px -8px rgba(0, 0, 0, 0.75);
 }
+.open-button:focus {
+  outline: none;
+}
 
 /* The popup form - hidden by default */
 .form-popup {
@@ -173,7 +176,7 @@ li {
   padding: 15px;
   margin: 5px 0 22px 0;
   border: none;
-  background: #f1f1f1;
+  background-color: #ddd;
   border-radius: 30px;
   -webkit-box-shadow: 0px 5px 24px -8px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 0px 5px 24px -8px rgba(0, 0, 0, 0.75);
@@ -181,11 +184,11 @@ li {
 }
 
 /* When the inputs get focus, do something */
-/* .form-container input[type="text"]:focus,
+.form-container input[type="text"]:focus,
 .form-container input[type="password"]:focus {
-  background-color: #ddd;
+  background: #f1f1f1;
   outline: none;
-} */
+}
 
 /* Set a style for the submit/login button */
 .form-container .btn {
@@ -207,9 +210,42 @@ li {
   -moz-box-shadow: 0px 5px 24px -8px rgba(0, 0, 0, 0.75);
   box-shadow: 0px 5px 24px -8px rgba(0, 0, 0, 0.75);
 }
+.btn:focus {
+  outline: none;
+}
 
 /* Add a red background color to the cancel button */
 .form-container .cancel {
   background-color: red;
   opacity: 0.8;
+}
+@keyframes appear {
+  0% {
+    left: -500px;
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+    left: 0;
+  }
+  80% {
+    opacity: 1;
+    left: 0;
+  }
+  100% {
+    opacity: 0;
+    left: 500px;
+  }
+}
+.alertDiv {
+  top: 25%;
+  position: absolute;
+  width: 80vw;
+  margin: 10vw;
+  padding: 11px 11px;
+  border-radius: 3px;
+  min-height: 40px;
+  font-size: 16px;
+  animation-name: appear;
+  animation-duration: 3s;
 }

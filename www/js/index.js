@@ -59,14 +59,14 @@ var app = {
     // on take picture click
     document.getElementById("takePics").onclick = function () {
       let opts = {
-        quality: 80,
+        quality: 100,
         destinationType: Camera.DestinationType.FILE_URI,
         sourceType: Camera.PictureSourceType.CAMERA,
         mediaType: Camera.MediaType.PICTURE,
         encodingType: Camera.EncodingType.JPEG,
         cameraDirection: Camera.Direction.BACK,
-        targetWidth: 1024,
-        targetHeight: 1600
+        targetWidth: 2048
+        // targetHeight: 1600
       }
 
       navigator.camera.getPicture(app.ftw, app.wtf, opts)
@@ -133,7 +133,7 @@ var app = {
           redirect: "follow"
         }
 
-        fetch("http://192.168.0.195:3001/upload", requestOptions)
+        fetch("/upload", requestOptions)
           .then(response => {
             if (response.ok) {
               dataSent()
@@ -241,7 +241,7 @@ function loginFunc() {
       redirect: "follow"
     }
 
-    fetch("http://192.168.0.195:3001/login", requestOptions)
+    fetch("http://185.143.45.137:9001/login", requestOptions)
       .then(response => response.text())
       .then(result => {
         if (result.length <= 30) {

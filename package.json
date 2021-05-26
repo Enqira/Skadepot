@@ -1,5 +1,5 @@
 {
-    "name": "Cloud Pack",
+    "name": "cloudpack",
     "displayName": "Cloud Pack",
     "version": "1.0.0",
     "description": "A tool to track damaged packages.",

@@ -71,6 +71,11 @@ body {
   margin-left: 8px;
   margin-right: 8px;
 }
+.button:active {
+  background-color: #4d995b;
+  width: 160px;
+  height: 48px;
+}
 
 #last-result,
 #user-comment {

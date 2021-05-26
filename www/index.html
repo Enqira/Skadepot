@@ -3,7 +3,7 @@
 
 <head>
     <meta http-equiv="Content-Security-Policy"
-        content="default-src 'self' data: gap: https://ssl.gstatic.com http://185.143.45.137:9001/; script-src 'self' http://* 'unsafe-inline'; style-src 'self' http://* 'unsafe-inline'; media-src *; img-src *">
+        content="default-src 'self' data: gap: https://ssl.gstatic.com https://cp.enqira.com/; script-src 'self' http://* 'unsafe-inline' 'unsafe-eval'; style-src 'self' http://* 'unsafe-inline' 'unsafe-eval'; media-src *; img-src *">
     <meta name="format-detection" content="telephone=no">
     <meta name="msapplication-tap-highlight" content="no">
     <link rel="stylesheet" type="text/css" href="css/index.css">
@@ -27,7 +27,7 @@
                         <input type="text" id="user-field" placeholder="Enter User Name" name="user-name" required>
 
                         <label><b>Password</b></label>
-                        <input type="text" id="pass-field" placeholder="Enter Password" name="password" required>
+                        <input type="password" id="pass-field" placeholder="Enter Password" name="password" required>
 
                         <button type="button" onclick="loginFunc()" class="btn">Log-in</button>
                         <button type="button" onclick="closeForm()" class="btn cancel">Close</button>
@@ -43,12 +43,12 @@
                     <div class="button" id="startScan">
                         Scan
                     </div>
-                    <div class="button" id="settings">
+                    <!-- <div class="button" id="settings">
                         Settings
-                    </div><br>
+                    </div> -->
                     <div class="button" id="takePics">
-                        Pictures
-                    </div>
+                        Camera
+                    </div><br>
                     <div class="button" id="send">
                         Send
 

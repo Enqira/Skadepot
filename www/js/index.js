@@ -124,7 +124,7 @@ var app = {
           redirect: "follow"
         }
 
-        fetch("http://185.143.45.137:9001/upload", requestOptions)
+        fetch("https://cp.enqira.com/upload", requestOptions)
           .then(response => {
             if (response.ok) {
               dataSent()
@@ -232,7 +232,7 @@ function loginFunc() {
       redirect: "follow"
     }
 
-    fetch("http://185.143.45.137:9001/login", requestOptions)
+    fetch("https://cp.enqira.com/login", requestOptions)
       .then(response => response.text())
       .then(result => {
         if (result.length <= 30) {
